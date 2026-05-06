@@ -161,6 +161,11 @@ def main():
     feed_content = truncate_feeds(feeds)
     user_message = f"请根据以下原始数据，生成 {today} AI资讯日报：\n\n{feed_content}"
     digest = call_github_models(github_token, system_prompt, user_message)
+    # Strip footer injected by upstream prompts
+    digest = "\n".join(
+        line for line in digest.splitlines()
+        if "follow-builders" not in line.lower() and "follow builders" not in line.lower()
+    ).strip()
     print(f"Digest generated ({len(digest)} chars)")
 
     dry_run = os.environ.get("DRY_RUN", "false").lower() == "true"
