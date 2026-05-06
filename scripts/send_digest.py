@@ -47,6 +47,10 @@ def build_system_prompt(prompts, today):
 
 今天日期：{today}
 
+【第一行格式（必须严格遵守）】
+- 第一行固定为：**🤖 AI Builders Digest — {today}**
+- 注意：🤖 后面有一个空格，整行加粗
+
 【排版规则（企业微信Markdown）】
 - 标题用 **粗体**，不用 # 号
 - 列表用 - 或数字
@@ -68,7 +72,8 @@ def build_system_prompt(prompts, today):
 - 输出全中文，技术名词保留英文（AI、LLM、API、GPU、RAG、agent、token等）
 - 人名、产品名、公司名保留英文
 - 不要捏造或推测内容，只整理已有信息
-- 末尾固定加一行：> 资讯来源：[Follow Builders](https://github.com/zarazhangrui/follow-builders)
+- 某个板块（X/Twitter、Official Blogs、Podcasts）如果没有新内容，直接跳过，不要展示该板块
+- 结尾不加任何来源说明
 """
 
 
